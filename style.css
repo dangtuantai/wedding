@@ -1,0 +1,674 @@
+/* =========================================
+   CSS Variables & Theming
+========================================= */
+:root {
+    /* Light Mode (Cream, Gold, Soft Neutral) */
+    --bg-color: #faf8f5;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --accent-color: #d4af37;
+    /* Soft Gold */
+    --accent-light: rgba(212, 175, 55, 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    --hero-overlay: rgba(255, 255, 255, 0.3);
+    --heart-color: #e76f51;
+}
+
+body.pink-mode {
+    /* Pink Mode (Soft Rose, Blush, White) */
+    --bg-color: #fff0f3;
+    --text-main: #5ebad;
+    --text-muted: #8e7a81;
+    --accent-color: #ff758f;
+    /* Vibrant but soft Pink */
+    --accent-light: rgba(255, 117, 143, 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(255, 192, 203, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(255, 117, 143, 0.1);
+    --hero-overlay: rgba(255, 240, 243, 0.4);
+    --heart-color: #ff4d6d;
+}
+
+/* =========================================
+   Reset & Base Styles
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.couple-names,
+.section-title,
+.logo {
+    font-family: 'Playfair Display', serif;
+}
+
+/* =========================================
+   Glassmorphism Utilities
+========================================= */
+.glass-panel,
+.glass-card,
+.glass-btn {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   Navigation
+========================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 0;
+    transition: transform 0.3s ease, padding 0.3s ease;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    letter-spacing: 2px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    margin-left: 30px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--accent-color);
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* =========================================
+   Theme Toggle Button
+========================================= */
+#theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   Hero Section
+========================================= */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    /* Soft romantic background image for hero */
+    background-image: url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--hero-overlay);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    background: var(--glass-bg);
+    padding: 60px 40px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    max-width: 800px;
+    width: 90%;
+    backdrop-filter: blur(10px);
+}
+
+.save-the-date {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.couple-names {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.2;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.groom,
+.bride {
+    font-family: 'Great Vibes', cursive;
+    color: var(--text-main);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+}
+
+.ampersand {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin: -10px 0;
+}
+
+.role-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.role-subtitle .dot {
+    margin: 0 10px;
+    color: var(--accent-color);
+}
+
+.wedding-date {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.date-box {
+    display: inline-block;
+    padding: 15px 40px;
+    border-top: 2px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.date-box .day {
+    display: block;
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--accent-color);
+}
+
+.date-box .month-year {
+    display: block;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.location-txt {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: var(--accent-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px var(--accent-light);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background-color: var(--text-main);
+}
+
+/* =========================================
+   Layout & Sections
+========================================= */
+.section-padding {
+    padding: 100px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 60px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+/* =========================================
+   Invitation Section
+========================================= */
+.invitation {
+    background: linear-gradient(to bottom, var(--bg-color), var(--accent-light), var(--bg-color));
+}
+
+.invite-card {
+    padding: 60px 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.greeting {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.message {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    line-height: 1.8;
+    margin-bottom: 50px;
+}
+
+.parents-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 30px;
+}
+
+.family h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* =========================================
+   Gallery Section
+========================================= */
+.gallery {
+    background-color: var(--bg-color);
+}
+
+.masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
+    grid-auto-flow: dense;
+    gap: 20px;
+}
+
+.gallery-item {
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--glass-shadow);
+    cursor: pointer;
+    background-color: var(--glass-bg);
+}
+
+@media (min-width: 768px) {
+    .gallery-item.tall {
+        grid-row: span 2;
+    }
+
+    .gallery-item.wide {
+        grid-column: span 2;
+    }
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   Gift Section
+========================================= */
+.gift {
+    background: linear-gradient(to top, var(--bg-color), var(--accent-light), var(--bg-color));
+}
+
+.gift-card {
+    padding: 50px 30px;
+    border-radius: 20px;
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--accent-color);
+}
+
+.gift-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--accent-light) 0%, transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.gift-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.gift-icon {
+    font-size: 3rem;
+    color: var(--heart-color);
+    margin-bottom: 10px;
+}
+
+.gift-subtitle {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.gift-text {
+    font-size: 1.05rem;
+    color: var(--text-main);
+    margin-bottom: 40px;
+    line-height: 1.8;
+}
+
+.qr-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px dashed var(--accent-color);
+}
+
+.qr-box {
+    position: relative;
+    padding: 10px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.qr-code-img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    border-radius: 10px;
+}
+
+.qr-scan-line {
+    position: absolute;
+    width: calc(100% - 20px);
+    height: 3px;
+    background: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+    top: 50%;
+    left: 10px;
+    animation: scan 2.5s infinite linear alternate;
+    opacity: 0.8;
+}
+
+@keyframes scan {
+    0% {
+        top: 10px;
+    }
+
+    100% {
+        top: calc(100% - 10px);
+    }
+}
+
+.bank-info {
+    text-align: left;
+}
+
+.bank-name {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+.account-number {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.account-name {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+
+/* =========================================
+   Footer
+========================================= */
+.footer {
+    background-color: var(--text-main);
+    color: #ffffff;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.footer .made-with-love {
+    margin-top: 15px;
+    color: var(--accent-color);
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+}
+
+/* =========================================
+   Animations & Interactions
+========================================= */
+/* Fade in Up */
+.fade-in-up {
+    animation: fadeInUp 1.2s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Reveal on Scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Flying Hearts Cursor Effect */
+.cursor-heart {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 20px;
+    color: var(--heart-color);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: floatHeart 1s ease-out forwards;
+}
+
+@keyframes floatHeart {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -150px) scale(1.5) rotate(45deg);
+    }
+}
+
+/* =========================================
+   Responsive Design
+========================================= */
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 40px 20px;
+    }
+
+    .couple-names {
+        font-size: 2.5rem;
+    }
+
+    .date-box {
+        padding: 10px 20px;
+    }
+
+    .date-box .day {
+        font-size: 2.5rem;
+    }
+
+    .navbar nav {
+        display: none;
+        /* simple hidden menu on mobile for now, can implement hamburger later */
+    }
+
+    .parents-info {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .qr-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .bank-info {
+        text-align: center;
+    }
+}
